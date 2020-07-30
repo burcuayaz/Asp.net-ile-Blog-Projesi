@@ -1,0 +1,106 @@
+﻿@using Blog.Models;
+
+@helper Render(Post post,System.Web.Mvc.HtmlHelper html, bool isAdmin, bool showComments) { 
+
+    <div class="postTitle"><a href="@Href("~/Posts/Details/" + post.Id)">@post.Title></a></div>
+
+    <div class="postContainer">
+        <div class="postTabs">
+            <div class="dateTab">
+                <div class="month">@post.DateTime.Value.ToString("MMM").ToUpper()</div>
+                <div class="day">@post.DateTime.Value.ToString("dd")</div>
+             </div>
+             <div class="commentsTab">
+                <a href="@Href("~/Posts/Details/"+post.Id+ "#comments")">
+                 <img  width="40" src="@Href("~/Content/Images/comment.png")" alt="Comments"/>
+                 @post.Comments.Count
+                </a>
+             </div>
+        </div>
+
+         <div class="postContent">
+             <div class="postBody">@html.Raw(post.Body)</div>
+             <div class="tagList">
+                 @foreach(Tag  tag in post.Tags)
+                 {
+                     <span class="tag"><a href="@Href("~/Posts/Tags/"+tag.Name)">@tag.Name</a></span>
+                 }
+             </div>
+             <div class="linkList">
+                 @{ 
+                     string url = "buraya bir link koy" + post.Id;
+                     string encodeUrl = HttpUtility.UrlEncode(url);
+                     string encodedTitle = HttpUtility.UrlEncode(post.Title);
+                     }
+                 <a href="http://reddit.com/submit?url=@encodeUrl&title=@encodedTitle"><img height="40" width="60" src="@Href("~/Content/Images/submit.png")" alt="submit"/></a>
+                 <a href="http://digg.com/submit?url=@encodeUrl&title=@encodedTitle"><img  height="40"  width="40" src="@Href("~/Content/Images/help.png") " alt="help" /></a>
+                 <a href="http://twitter.com/share" class="twitter-share-button" data-url="@encodeUrl" data-text="@encodedTitle" data-count="none">Tweet</a>
+                 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+             </div>
+         </div>
+
+        <!--bu kod bloğunda adminin  gelen yorumu kontrol etmesi sağlanıyor(düzenle veya sil)-->
+
+        @if (isAdmin)
+        {
+         <div class="postControlPanel">
+             <a href="@Href("~/Posts/Delete/"+post.Id)">Sil</a>
+             <a href="@Href("~/Posts/Edit/"+post.Id)">Düzenle</a>
+
+         </div>
+        }
+     </div>
+
+
+                  <!-- bu kod parçacığında yorumlar kısmını kontrol ediyoruz -->
+
+                     if (showComments)
+                     {
+                        <div id="commentContainer">
+                            <a id="comments"></a>
+                            @foreach(Comment comment in post.Comments.OrderBy(x=> x.DateTime))
+                            {
+                                <div class="comment">
+                                    <div class=" commentName">
+                                        @if (!string.IsNullOrWhiteSpace(comment.Email))
+                                        {
+                                            <a href="mailto:@comment.Email">@comment.Name</a>
+                                        }
+                                        else
+                                        {
+                                            @comment.Name;
+                                        }
+                                    </div>
+                                    
+                                    <div class="commentBody">@html.Raw(html.Encode(comment.Body).Replace("\n","<br/>"))</div>
+                                    <div class="commentTime">at @comment.DateTime.Value.ToString("HH:mm") on @comment.DateTime.Value.ToString("yyyy/MM/dd")</div>
+
+                                    <!--yorum silme yetkisi kodu-->
+
+                                    @if (isAdmin)
+                                    {
+                                        <div class="commentControlPanel">
+                                            <a href="@Href("~Posts/DeleteComment/"+comment.Id)">Sil</a>
+                                        </div>
+                                    }
+
+                                 </div>
+                                    }
+                             
+                              <!--yorum arayüz kodları-->
+
+                                <div id="commentEditor">
+                                    <div id="commentPromp">Yorum yap</div>
+                                    <form action="@Href("~/posts/Comment/"+post.Id)" method="post">
+                                       <input type="text" id="commentNamePrompt" name="name" />İsim<br />
+                                       <input type="text" id="commentEmailPrompt" name="email" />Eposta<br />
+                                      <textarea id="commentBodyInput" name="body" rows="10" cols="60"></textarea><br />
+                                      <input type="submit" id="commentSubmitInput" name="submit" value="Submit!" />
+                                </form>
+                             </div>
+                         </div>
+                             }
+                     } 
+
+
+}

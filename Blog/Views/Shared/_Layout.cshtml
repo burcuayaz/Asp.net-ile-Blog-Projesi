@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Blog.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="~/Content/Images/fav.png" type="image/x-icon" />
+    <script src="~/Scripts/JQuery.js"></script>
+
+    @RenderSection("ExtraHeaders", false)
+</head>
+
+<body>
+    <div id="header">
+       <a  href="@Href("~/")"><img  width="150" src="@Href("~/Content/Images/title.jpg")" alt="Burcu Ayaz" /></a>
+    </div>
+    <div id="content">
+        <div id="topSeperator" class="seperator"></div>
+        <div id="sidebar">
+            <img width="100" height="100" id="portal" src="@Href("~/Content/Images/user.png")"
+                 alt="portal"/>
+            <div id=" twitterHeader"><a href="#">Burcu AYAZ on twitter</a></div>
+            <div id="tweets"></div>
+        </div>
+        <div id="main"></div>
+           @RenderBody()
+    </div>
+    <div id=" bottomSeperator" class="seperator"></div>
+ 
+
+
+    <div id="footer">
+       <div id="copyright">Copyright &copy; @DateTime.Now.Year, Burcu AYAZ</div>
+     @if (ViewBag.IsAdmin ?? false)
+     {
+       <div class="conrolPanel">
+           <a href="@Href("~/Posts/Edit")">Yeni post</a>
+           <a href="@Href("~/Account/Logout")">Çıkış yap</a>
+           
+       </div>
+     }
+     else
+     {
+         <div class="controlPanel">
+             <a href="@Href("~/Account/Login")">Giriş</a>
+         </div>
+     }
+    </div>
+</body>  
+</html>

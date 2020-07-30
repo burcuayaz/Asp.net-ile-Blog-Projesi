@@ -1,0 +1,18 @@
+﻿@model string
+@{
+    ViewBag.Title = "Login";
+}
+@section Extraheaders
+
+{
+    <script src="~/Scripts/Login.js"></script>
+   
+}
+
+
+<form action="@Href("~/Account/Login")" method="post" id="loginForm">
+    <input type="text" name="name" id="name" />İsim<br />
+    <input type="password" name="password" id="password" />Şifre<br />
+    <input type="button" onclick="$('#loginForm').submit();" value="Login" />
+</form>
+

@@ -1,0 +1,21 @@
+﻿@model Blog.Models.Post
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<form action="@Href("~/Posts/Update")" method="post" id="postForm">
+
+@if (Model.Id != -1)
+{
+    <input type="hidden" name="id" value="@Model.Id" />
+}
+@{ DateTime dateTime = DateTime.Now;}   <!--tarih bilgisi güncel olsun diye -->
+<input type="text" name="dateTime" value="@dateTime" />Date<br />
+<input type="text" name="title" value="@Model.Title" />Title<br />
+<input type="text" name="tags" value="@ViewBag.Tags" />Tags<br />
+<textarea name="body" rows="10" cols="80" >@Model.Body</textarea><br/>
+<input type="submit" name="submit" value="Submit!" />
+
+</form>
+<!--post girişi arayüz-->

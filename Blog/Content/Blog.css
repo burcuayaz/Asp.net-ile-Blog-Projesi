@@ -1,0 +1,163 @@
+﻿body 
+{
+    margin:0;
+    padding:0;
+    width:100%;
+    color:#303030;
+    text-align:center;
+    font-family:Verdana,Tahoma,"Trebuchet MS",sans-serif;
+    font-size:14px;
+  
+}
+ #header{
+     padding:10px;
+
+ }
+ #footer{
+     padding:10px;
+     color: #808080;
+
+ }
+.seperator {
+    clear: both;
+    height: 8px;
+   
+}
+#topSeperator{
+    margin-bottom:20px;
+}
+
+#bottomSeperator{
+    margin-top:20px;
+}
+#content {
+    background-image: url('/Content/images/background.jpg');
+}
+img{
+    border:0;
+
+}
+
+.postTitle{
+    margin:auto;
+    text-align:left;
+    width:615px;
+    font-size:40px;
+    font-weight:bold;
+    font-family:"Palatino Linotype",Palatino;
+    padding-left:85px;
+}
+    .postTitle a:link, .postTitle a:visited, .postTitle a:hover, .postTitle a:active{
+        color:#303030;
+        text-decoration:none;
+
+    }
+
+        .postTitle a:hover{
+            text-decoration:underline;
+        }
+
+        .postContainer {
+            width: 700px;
+            margin: 0 auto 50px auto;
+        }
+.postTabs{
+    color:#ffffff;
+    float:left;
+    font-size:12px;
+}
+.dateTab{
+    margin-top:20px;
+    width:60px;
+    padding:5px;
+    background:#303030
+}
+.month{
+
+}
+.day{
+    font-size:2em;
+}
+.commentsTab {
+    margin-top: 20px;
+    width: 60px;
+    padding: 5px;
+    background: #217aa6;
+}
+.postContent{
+    padding:15px 15px 15px 50px;
+    width:600px;
+    margin-left:35px;
+    color:#000000;
+    background-color:#ffffff;
+}
+.postBody{
+    text-align:left;
+    line-height:1.5em;
+}
+.tagList{
+    float:left;
+}
+.tag{
+
+}
+.linkList {
+    text-align: right;
+}
+
+.postConrolPanel{
+
+}
+
+.comment, #commentEditor {
+    text-align: left;
+    color:#000000;
+    background: #ffffff;
+    padding:15px;
+    margin-bottom:30px;
+}
+#commentContainer{
+    width:665px;
+    margin:auto;
+    padding-left:35px;
+
+}
+
+.commentName{
+    font-style:italic;
+}
+.commentBody{
+    margin:5px;
+}
+.commentTime{
+    font-style:italic;
+    text-align:right;
+    font-size:10px;
+}
+.commentControlPanel{
+
+}
+.commentsTab a:link, .commentsTab a:visited, .commentsTab a:hover, .commentsTab a:active{
+    color:#ffffff;
+    text-decoration:none;
+}
+
+.commentsTab a:hover{
+    text-decoration:underline;
+}
+
+.commentsTab img{
+    margin-right:5px;
+    vertical-align:middle;
+}
+#sidebar{
+    float:right;
+    margin-right:15px;
+    width:200px;
+}
+#main{
+    margin-right:230px;
+}
+#portal, #twitterHeader, #tweets, #feedList {
+    margin:10px 0 10px 0;
+}
